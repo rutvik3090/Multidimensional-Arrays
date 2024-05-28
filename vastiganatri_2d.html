@@ -1,0 +1,471 @@
+<script>
+
+
+  var data = [];
+  var aa = true;
+  var h_id = 1;
+  var a_id = 1;
+  var m_id = 1;
+
+  do {
+    var a = parseInt(
+      prompt(
+        "enter your choice?\n1.insert\n2.view\n3.search\n4.update\n5.delete\n6.exit"
+      )
+    );
+    if (a == 1) {
+      var bb = true;
+      do {
+        var b = parseInt(
+          prompt("su insert karvu che?\n1.area\n2.home\n3.member\n4.exit")
+        );
+        if (b == 1) {
+          var c = prompt("enter area name:");
+          var d = [a_id, c, 0, 0, []];
+          data.push(d);
+          a_id++;
+          alert(data);
+        } else if (b == 2) {
+          var e = parseInt(
+            prompt("which area in insert to home?enter area id")
+          );
+          var dd = -1;
+          for (var i in data) {
+            if (e == data[i][0]) {
+              dd = i;
+
+              break;
+            }
+          }
+          if (dd == -1) {
+            alert("invalid id");
+          } else {
+            var ff = true;
+            do {
+              var h_id = data[dd][4].length;
+              var f = prompt("enter home name");
+              var g = [h_id + 1, f, 0, []];
+              data[dd][4].push(g);
+              data[dd][2] = h_id + 1;
+              var h = parseInt(
+                prompt("do you want to home insert again ?1.yes\n2.no")
+              );
+              if (h != 1) {
+                ff = false;
+              }
+            } while (ff == true);
+          }
+          alert(data);
+        } else if (b == 3) {
+          var gg = -1;
+          var jj = -1;
+
+          var j = parseInt(prompt("which area in insert member?enter area id"));
+          for (var k in data) {
+            if (j == data[k][0]) {
+              jj = 1;
+              var ll = parseInt(
+                prompt("which home in insert member?enter home id")
+              );
+              for (var f in data[k][4]) {
+                if (ll == data[k][4][f][0]) {
+                  gg = 1;
+                  break;
+                }
+              }
+              break;
+            }
+          }
+          if (jj == -1) {
+            alert("id invalid");
+          } else {
+            if (gg == -1) {
+              alert("id invalid");
+            } else {
+              var mj = true;
+              do {
+                var m_id = data[k][4][f][3].length;
+                var m = prompt("enter member name");
+
+                var age = parseInt(prompt("enter age"));
+                if (age >= 15) {
+                  var num = parseInt(prompt("enter mobile number"));
+                }
+                var gen = prompt("enter gender");
+
+                var gh = [m_id + 1, m, age, num, gen];
+
+                data[k][4][f][3].push(gh);
+                data[k][4][f][2] = m_id + 1;
+                data[k][3] = m_id + 1;
+                var z = parseInt(
+                  prompt("do you want to home insert again ?1.yes\n2.no")
+                );
+                if (z != 1) {
+                  mj = false;
+                }
+              } while (mj == true);
+            }
+          }
+          alert(data);
+        } else if (b == 4) {
+          bb = false;
+          alert("thank you");
+        } else {
+          alert("invalid input");
+        }
+      } while (bb == true);
+    } else if (a == 2) {
+      alert("view data");
+      var we = true;
+      do {
+        var az = parseInt(
+          prompt(
+            "kayo data view karvo che?\n1.area\n2.home\n3.member\n4.all\n5.exit"
+          )
+        );
+        if (az == 1) {
+          var qw = "";
+          for (var i in data) {
+            var qw =
+              qw +
+              "area id: " +
+              data[i][0] +
+              "\n" +
+              "area name: " +
+              data[i][1] +
+              "\n" +
+              "total home: " +
+              data[i][2] +
+              "\n" +
+              "total member: " +
+              data[i][3] +
+              "\n";
+          }
+          alert(qw);
+        } else if (az == 2) {
+          var sd = parseInt(prompt("kya area na home view karva che?area id"));
+          for (var i in data) {
+            if (sd == data[i][0]) {
+              var ws = "";
+              for (var d in data[i][4]) {
+                ws =
+                  ws +
+                  "Home id: " +
+                  data[i][4][d][0] +
+                  "\n" +
+                  "Home Name: " +
+                  data[i][4][d][1] +
+                  "\n" +
+                  "Total Member: " +
+                  data[i][4][d][2] +
+                  "\n";
+              }
+              alert(ws);
+            }
+          }
+        } else if (az == 3) {
+          var sk = parseInt(prompt("kya area na home view karva che?area id"));
+          for (var i in data) {
+            if (sk == data[i][0]) {
+              var nj = parseInt(
+                prompt("kya home na member view karva che?home id")
+              );
+
+              for (var j in data[i][4]) {
+                if (nj == data[i][4][j][0]) {
+                  var gh = "";
+                  for (var k in data[i][4][j][3]) {
+                    gh =
+                      gh +
+                      "member id: " +
+                      data[i][4][j][3][k][0] +
+                      "\n" +
+                      "member name: " +
+                      data[i][4][j][3][k][1] +
+                      "\n" +
+                      "member age: " +
+                      data[i][4][j][3][k][2] +
+                      "\n" +
+                      "mo. number: " +
+                      data[i][4][j][3][k][3] +
+                      "\n" +
+                      "gender: " +
+                      data[i][4][j][3][k][4] +
+                      "\n";
+                  }
+                  alert(gh);
+                }
+              }
+            }
+          }
+        } else if (az == 4) {
+          var gt = "\n";
+          for (var i in data) {
+            var gt =
+              gt +
+              "area id: " +
+              data[i][0] +
+              "\n" +
+              "area name: " +
+              data[i][1] +
+              "\n" +
+              "total home: " +
+              data[i][2] +
+              "\n" +
+              "total member: " +
+              data[i][3] +
+              "\n";
+            var op = "\n";
+            for (var d in data[i][4]) {
+              op =
+                op +
+                "Home id: " +
+                data[i][4][d][0] +
+                "\n" +
+                "Home Name: " +
+                data[i][4][d][1] +
+                "\n" +
+                "Total Member: " +
+                data[i][4][d][2] +
+                "\n";
+              var kl = "\n";
+              for (var k in data[i][4][d][3]) {
+                kl =
+                  kl +
+                  "member id: " +
+                  data[i][4][d][3][k][0] +
+                  "\n" +
+                  "member name: " +
+                  data[i][4][d][3][k][1] +
+                  "\n" +
+                  "member age: " +
+                  data[i][4][d][3][k][2] +
+                  "\n" +
+                  "mo. number: " +
+                  data[i][4][d][3][k][3] +
+                  "\n" +
+                  "gender: " +
+                  data[i][4][d][3][k][4] +
+                  "\n";
+              }
+              op = op + kl;
+            }
+            gt = gt + op;
+          }
+          alert(gt);
+        } else if (az == 5) {
+          we = false;
+          alert("thanks");
+        } else {
+          alert("invalid input");
+        }
+      } while (we == true);
+    } else if (a == 3) {
+      var tt = true;
+      do {
+        var search = parseInt(
+          prompt("su search karvu che?\n1.area\n2.home\n3.member\n4.exit")
+        );
+        if (search == 1) {
+          var ss = false;
+          var fd = parseInt(prompt("enter search for area id?"));
+          for (var i in data) {
+            if (fd == data[i][0]) {
+              ss = true;
+              alert(
+                "area id: " +
+                data[i][0] +
+                "\n" +
+                "area name: " +
+                data[i][1] +
+                "\n" +
+                "total home: " +
+                data[i][2] +
+                "\n" +
+                "total member: " +
+                data[i][3] +
+                "\n"
+              );
+            }
+          }
+        } else if (search == 2) {
+          var sp = false;
+          var ji = false;
+          var fj = parseInt(
+            prompt("kaya area ma home search karvu che?area id?")
+          );
+          for (var i in data) {
+            if (fj == data[i][0]) {
+              sp = true;
+              var jk = parseInt(prompt("enter search for home id?"));
+              for (var j in data[i][4]) {
+                if (jk == data[i][4][j][0]) {
+                  ji = true;
+                  alert(
+                    "Home id: " +
+                    data[i][4][j][0] +
+                    "\n" +
+                    "Home Name: " +
+                    data[i][4][j][1] +
+                    "\n" +
+                    "Total Member: " +
+                    data[i][4][j][2] +
+                    "\n"
+                  );
+                }
+              }
+            }
+          }
+        } else if (search == 3) {
+          var ko = false;
+          var ni = false;
+          var hg = false;
+          var nu = parseInt(
+            prompt("kaya area ma member search karvu che?area id?")
+          );
+          for (var i in data) {
+            if (nu == data[i][0]) {
+              ko = true;
+              var lo = parseInt(
+                prompt("kaya home na members search karva che ?home id")
+              );
+              for (var j in data[i][4]) {
+                if (lo == data[i][4][j][0]) {
+                  ni = true;
+                  var po = parseInt(prompt("enter search for member id"));
+                  for (var k in data[i][4][j][3]) {
+                    if (po == data[i][4][j][3][k][0]) {
+                      hg = true;
+                      alert(
+                        "member id: " +
+                        data[i][4][j][3][k][0] +
+                        "\n" +
+                        "member name: " +
+                        data[i][4][j][3][k][1] +
+                        "\n" +
+                        "member age: " +
+                        data[i][4][j][3][k][2] +
+                        "\n" +
+                        "mo. number: " +
+                        data[i][4][j][3][k][3] +
+                        "\n" +
+                        "gender: " +
+                        data[i][4][j][3][k][4] +
+                        "\n"
+                      );
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } else if (search == 4) {
+          tt = false;
+          alert("thanks");
+        } else {
+          alert("invalid input");
+        }
+      } while (tt == true);
+    } else if (a == 4) {
+      var hb = true;
+      do {
+        var sl = parseInt(
+          prompt("entre choice for update?\n1.area\n2.home\n3.member\n4.exit")
+        );
+        if (sl == 1) {
+          var kk = parseInt(prompt("enter area id for update?"));
+          for (var i in data) {
+            if (kk == data[i][0]) {
+              data[i][1] = prompt("enter area name for update");
+              alert(data[i][1]);
+            }
+          }
+        } else if (sl == 2) {
+          var jn = false;
+          var sf = false;
+          var sh = parseInt(
+            prompt("kya area ma home name update karvu che?\n?area id")
+          );
+          for (var i in data) {
+            if (sh == data[i][0]) {
+              jn = true;
+              var sc = parseInt(prompt("enter home id for update"));
+              for (var j in data[i][4]) {
+                if (sc == data[i][4][j][0]) {
+                  sf = true;
+                  data[i][4][j][1] = prompt("enter home name for update ");
+                  alert(data[i][4][j][1]);
+                }
+              }
+            }
+          }
+        } else if (sl == 3) {
+          var jb = false;
+          var tr = false;
+          var td = false;
+          var dh = parseInt(
+            prompt("kya area ma member name update karvu che?\n?area id")
+          );
+          for (var i in data) {
+            if (dh == data[i][0]) {
+              jb = true;
+              var gk = parseInt(
+                prompt("kya home na member nu  name update karvu che?home id?")
+              );
+              for (var j in data[i][4]) {
+                if (gk == data[i][4][j][0]) {
+                  tr = true;
+                  var kj = parseInt(prompt("enter member id for update"));
+                  for (var h in data[i][4][j][3]) {
+                    if (kj == data[i][4][j][3][h][0]) {
+                      td = true;
+                      data[i][4][j][3][h][1] = prompt(
+                        "enter member name for update"
+                      );
+                      alert(data[i][4][j][3][h][1]);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } else if (sl == 4) {
+          hb = false;
+          alert("thanks for data update");
+        } else {
+          alert("invalid input");
+        }
+      } while (hb == true);
+    } else if (a == 5) {
+      var df = true;
+      do {
+        var del = parseInt(
+          prompt("su delete karvu che?\n1.area\n2.home\n3.member\n4.exit")
+        );
+        if (del == 1) {
+          var d1 = parseInt(prompt("enter area id for delete?"));
+          for (var i in data) {
+            if (d1 == data[i][0]) {
+              data.splice(i, 1);
+              break;
+            }
+            // alert(data);
+          }
+        } else if (del == 2) {
+        } else if (del == 3) {
+        } else if (del == 4) {
+          df = false;
+          alert("thanks");
+        } else {
+          alert("inavlid input");
+        }
+      } while (df == true);
+    } else if (a == 6) {
+      aa = false;
+      alert("thank you ");
+    } else {
+      alert("invalid input");
+    }
+  } while (aa == true);
+</script>
